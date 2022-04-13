@@ -20,26 +20,50 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  login(){
-    var acno = this.acno
-    var pswd = this.pswd
-    let database=this.database
-    if(acno in database){
-      if(pswd == database[acno]["password"]){
-        alert("login successfull!")
-      }
-      else
-      {
-        alert("incorrecy password")
-      }
-    }
+  // login(){
+  //   var acno = this.acno
+  //   var pswd = this.pswd
+  //   let database=this.database
+  //   if(acno in database){
+  //     if(pswd == database[acno]["password"]){
+  //       alert("login successfull!")
+  //     }
+  //     else
+  //     {
+  //       alert("incorrect password")
+  //     }
+  //   }
       
 
   
-    else{
-      alert("user does not exist!")
+  //   else{
+  //     alert("user does not exist!")
+  //   }
+  // }
+
+  // login using template referencing variable
+  login(a:any,p:any){
+    
+    var acno = a.value
+      var pswd = p.value
+      let database=this.database
+      if(acno in database){
+        if(pswd == database[acno]["password"]){
+          alert("login successfull!")
+        }
+        else
+        {
+          alert("incorrect password")
+        }
+      }
+        
+  
+    
+      else{
+        alert("user does not exist!")
+      }
     }
-  }
+  
   acnoChange(event:any){
     this.acno=event.target.value
   }
