@@ -42,10 +42,15 @@ export class LoginComponent implements OnInit {
   // }
 
   // login using template referencing variable
-  login(a:any,p:any){
+  // login using two way binding
+  login(){
     
-    var acno = a.value
-      var pswd = p.value
+    // var acno = a.value
+    
+    
+    //   var pswd = p.value
+    var acno = this.acno
+    var pswd = this.pswd
       let database=this.database
       if(acno in database){
         if(pswd == database[acno]["password"]){
