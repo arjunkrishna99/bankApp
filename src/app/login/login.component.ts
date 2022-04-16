@@ -41,31 +41,20 @@ export class LoginComponent implements OnInit {
   // login using template referencing variable
   // login using two way binding
   login(){
-    
-    // var acno = a.value
-    
-    
-    //   var pswd = p.value
     var acno = this.acno
-    var pswd = this.pswd
-      let database=this.ds.database
-      if(acno in database){
-        if(pswd == database[acno]["password"]){
-          alert("login successfull!")
-          this.router.navigateByUrl("dashboard")
-        }
-        else
-        {
-          alert("incorrect password")
-        }
-      }
-        
-  
+    console.log(acno);
     
-      else{
-        alert("user does not exist!")
-      }
+    var pswd = this.pswd
+    const result=this.ds.login(acno,pswd)
+    if(result){
+      alert("login successfull!")
+          this.router.navigateByUrl("dashboard")
+
     }
+      
+          
+    }
+        
   
   acnoChange(event:any){
     this.acno=event.target.value

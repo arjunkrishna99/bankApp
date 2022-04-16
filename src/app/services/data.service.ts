@@ -13,6 +13,7 @@ export class DataService {
 
   constructor() { }
   register(uname:any,acno:any,password:any){
+    
     let database=this.database
     if(acno in database){
       return false
@@ -27,8 +28,56 @@ export class DataService {
         balance:0
 
       }
+      console.log(database);
+      
       return true
     }
 
   }
+  login(acno:any,pswd:any){
+    
+    // user entered acno and pswd
+      let database=this.database
+      if(acno in database){
+        if(pswd == database[acno]["password"]){
+          // already existing indb
+          return true
+        }
+        else
+        {
+          return false
+        }
+      }
+        
+  
+    
+      else{
+        alert("user does not exist!")
+        return false
+      }
+    }
+
+    // deposit
+    deposit(acno:any,pswd:any,amt:any){
+      let database=this.database
+      var amount =parseInt(amt)
+
+      if(acno in database){
+        if(pswd == database[acno]["password"]){
+
+          database[acno]["balance"]+=amount
+          return database[acno]["balance"]
+        }
+        else{
+          alert("incorrect password!")
+          return false
+        }
+
+      }
+      else{
+        alert("user does not exist!")
+        return false
+      }
+
+    }
 }
