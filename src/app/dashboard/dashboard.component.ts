@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     var acno=this.acno
     var pswd=this.pswd
     var amount=this.amount
+    // calling deposit in dataserver
 
     const result =this.ds.deposit(acno,pswd,amount)
     if(result){
@@ -32,7 +33,16 @@ export class DashboardComponent implements OnInit {
   }
 
   withdraw(){
-    alert("withdraw clicked!")
+    var acno=this.acno1
+    var pswd=this.pswd1
+    var amount=this.amount1
+    // calling withdraw in dataserver
+
+    const result =this.ds.withdraw(acno,pswd,amount)
+    if(result){
+      alert(amount + "succesfully withdraw and new balance is:"+result)
+    }
+    
   }
 
 }
