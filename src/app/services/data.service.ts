@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  currentUser:any
    // database
    database:any = {
     1000 : {acno : 1000,uname:"arjun",password:1000,balance:5000},
@@ -40,6 +41,7 @@ export class DataService {
       let database=this.database
       if(acno in database){
         if(pswd == database[acno]["password"]){
+          this.currentUser =database[acno]["uname"]
           // already existing indb
           return true
         }

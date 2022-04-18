@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -12,8 +13,14 @@ export class LoginComponent implements OnInit {
   accNum="account number please!"
   acno=""
   pswd=""
+  // login form
+  loginForm = this.fb.group({
+    
+    acno:['',[Validators.required,Validators.pattern('[0-9]*') ]],
+    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*') ]]
+  })
   
-  constructor(private router: Router,private ds:DataService) { }
+  constructor(private router: Router,private ds:DataService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -41,18 +48,22 @@ export class LoginComponent implements OnInit {
   // login using template referencing variable
   // login using two way binding
   login(){
-    var acno = this.acno
-    console.log(acno);
-    
-    var pswd = this.pswd
-    const result=this.ds.login(acno,pswd)
+    var acno = this.loginForm.value.acno
+    var pswd = this.loginForm.value.pswd
+    if(this.loginForm.valid){
+      const result=this.ds.login(acno,pswd)
     if(result){
       alert("login successfull!")
           this.router.navigateByUrl("dashboard")
 
     }
-      
-          
+     }
+     else{
+       alert("invalid form")
+     }
+    
+    
+    
     }
         
   
